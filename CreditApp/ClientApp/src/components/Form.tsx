@@ -1,8 +1,36 @@
 ﻿import React, {useState} from 'react';
 
 const Form = () => {
+    
+    interface Person{
+        Name: string,
+        Age: number
+    }
+    
+    const [person, updatePerson] = useState<Person>({
+        Name: 'Danil',
+        Age: 19
+    });
+    
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const response = fetch('anketa',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(person)
+            }).then(res => res.text())
+            .then(info => console.log(info));
+    }
+    
+    
+    
     return (
-        <form>
+        <form onSubmit={onSubmit}
+        >
             <div className="form-group row">
                 <label htmlFor="surname" className="col-4 col-form-label">Фамилия</label>
                 <div className="col-8">
