@@ -52,6 +52,5 @@ export const FetchData = () => {
     const data = await response.json();
     updateForecasts(data);
     updateLoading(false);
-    // this.setState({ forecasts: data, loading: false });
   }
 }

@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 
 import './custom.css'
+import Form from "./components/Form";
 
 const App = () => {
     return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
+        <Route path='/form' component={Form} />
       </Layout>
     );
 }
