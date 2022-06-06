@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
 export const NavMenu = () => {
-  // static displayName = NavMenu.name;
-
   const [collapsed, toggleNavbar] = useState(true);
   
     return (

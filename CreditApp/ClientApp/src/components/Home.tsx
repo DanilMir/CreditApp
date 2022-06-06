@@ -1,8 +1,6 @@
 import React from 'react';
 
 export const Home = () => {
-  // static displayName = Home.name;
-    
     return (
       <div>
         <h1>Hello, world!</h1>

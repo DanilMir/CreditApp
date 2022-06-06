@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
 export const FetchData = () => {
-  // static displayName = FetchData.name;
-
   const [forecasts, updateForecasts] = useState([]);
   const [loading, updateLoading] = useState(true);
 

@@ -3,8 +3,6 @@ import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 
 export const Layout = (props : any) => {
-  // static displayName = Layout.name;
-    
     return (
       <div>
         <NavMenu />

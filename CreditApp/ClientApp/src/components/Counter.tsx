@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 export const Counter = () => {
-  // static displayName = Counter.name;
     const [currentCount, incrementCounter] = useState(0);
   
     return (
