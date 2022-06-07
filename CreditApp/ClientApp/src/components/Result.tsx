@@ -9,7 +9,7 @@ const ResultForm = (props: {status: string, procents: number, errors: string[]})
             <div>
                 <Alert>
                     <h4 className="alert-heading">
-                        Поздравлеям
+                        Поздравляем
                     </h4>
                     <p>
                         Вам был одобрен кредит
