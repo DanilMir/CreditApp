@@ -39,6 +39,7 @@ const ResultForm = (props: {status: string, procents: number, errors: string[]})
     }
     
     if(props.status === "errors") {
+        console.log("ошибка")
         return (
                 <Alert color="danger">
                     <ListGroup>
