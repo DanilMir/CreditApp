@@ -2,8 +2,8 @@
 
 public class CriminalRecordCheckService
 {
-    public bool IsCriminal(Person person)
+    public Task<bool> IsCriminal(Person person)
     {
-        return new Random((int)DateTime.Now.Ticks).Next(100) < 10;
+        return Task.FromResult(new Random((int)DateTime.Now.Ticks).Next(100) < 10);
     }
 }
