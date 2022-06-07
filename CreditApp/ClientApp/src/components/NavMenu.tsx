@@ -23,6 +23,10 @@ export const NavMenu = () => {
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                 </NavItem>
+
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/form">Form</NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>
