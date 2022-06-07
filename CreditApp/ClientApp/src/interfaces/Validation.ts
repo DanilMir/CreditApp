@@ -1,0 +1,18 @@
+﻿export default interface Validation{
+    surname: boolean,
+    name: boolean,
+    middlename: boolean,
+    series: boolean,
+    number: boolean,
+    issuedBy: boolean,
+    dateOfIssue: boolean,
+    residencyInfo: boolean,
+    age: boolean,
+    criminalRecordInfo: boolean,
+    amount: boolean,
+    purpose: boolean,
+    bail: boolean,
+    ageOfCar: boolean,
+    availabilityOfOtherLoans: boolean,
+    employment: boolean,
+}

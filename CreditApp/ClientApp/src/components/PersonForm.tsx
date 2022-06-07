@@ -1,26 +1,12 @@
 import React, {useState} from 'react';
-import {Button, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Form, FormFeedback, FormGroup, Input, Label} from "reactstrap";
+import ResultForm from "./Result";
+import Person from "../interfaces/Person";
+import Validation from "../interfaces/Validation";
+import Result from "../interfaces/Result";
 
 const PersonForm = () => {
     
-    interface Person{
-        surname: string,
-        name: string,
-        middlename: string,
-        series: string,
-        number: string,
-        issuedBy: string,
-        dateOfIssue: Date,
-        residencyInfo: string,
-        age: number,
-        criminalRecordInfo: string,
-        amount: number,
-        purpose: string,
-        bail: string,
-        ageOfCar: number,
-        availabilityOfOtherLoans: number,
-        employment: string,
-    }
     
     const [person, updatePerson] = useState<Person>({
         surname: "",
@@ -32,35 +18,75 @@ const PersonForm = () => {
         dateOfIssue: new Date(),
         residencyInfo: "",
         age: -1,
-        criminalRecordInfo: "",
+        criminalRecordInfo: "not have",
         amount: -1,
-        purpose: "",
-        bail: "",
+        purpose: "consumer loan",
+        bail: "no bail",
         ageOfCar: -1,
-        availabilityOfOtherLoans: -1,
-        employment: "",
+        availabilityOfOtherLoans: 0,
+        employment: "employed under an employment contract",
+    });
+    const [validation, updateValidation] = useState<Validation>({
+        surname: false,
+        name: false,
+        middlename: false,
+        series: false,
+        number: false,
+        issuedBy: false,
+        dateOfIssue: false,
+        residencyInfo: false,
+        age: false,
+        criminalRecordInfo: false,
+        amount: false,
+        purpose: false,
+        bail: false,
+        ageOfCar: false,
+        availabilityOfOtherLoans: false,
+        employment: false,
+    })
+    
+    const [result, updateResult] = useState<Result>({
+        status: "none",
+        procents: 0
     });
     
     
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         
-        //if(data.isCorrect) then => 
-        //else return <error text>
-        
-        fetch('person',
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(person)
-            })
-            .then(res => res.text())
-            .then(info => console.log(info));
+        if(!isDataCorrect()){
+            return;
+        }
+        else{
+            fetch('person',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(person)
+                })
+                .then(res => res.json())
+                .then(res => {
+                    updateResult({...res})
+                })
+        }
     }
 
+    function isDataCorrect() : boolean {
+        let status = true;
+        
+        if(person.surname.length < 3 || person.surname.length > 50)
+        {
+            validation.surname = true;
+            status = false;
+        }
+        else {validation.surname = false}
+        
+        return status;
+    }
+    
     const onChangeHandler = (e : React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         updatePerson((prevState) => ({ ...prevState, [name]: value }));
@@ -90,7 +116,8 @@ const PersonForm = () => {
                 className="form"
                 onSubmit={onSubmit}>
 
-                <FormGroup>
+                <FormGroup
+                >
                     <Label for="Surname">
                         Фамилия
                     </Label>
@@ -99,7 +126,11 @@ const PersonForm = () => {
                         name="surname"
                         type="text"
                         onChange={onChangeHandler}
+                        invalid={validation.surname}
                     />
+                    <FormFeedback>
+                        Oh noes! that name is already taken
+                    </FormFeedback>
                 </FormGroup>
 
                 <FormGroup>
@@ -111,6 +142,7 @@ const PersonForm = () => {
                         placeholder="Имя"
                         type="text"
                         onChange={onChangeHandler}
+                        invalid={validation.name}
                     />
                 </FormGroup>
 
@@ -123,6 +155,7 @@ const PersonForm = () => {
                         name="middlename"
                         type="text"
                         onChange={onChangeHandler}
+                        invalid={validation.middlename}
                     />
                 </FormGroup>
                 
@@ -135,6 +168,7 @@ const PersonForm = () => {
                         type="number"
                         name="series"
                         onChange={onChangeHandler}
+                        invalid={validation.series}
                     />
                 </FormGroup>
                 
@@ -147,6 +181,7 @@ const PersonForm = () => {
                         type="number"
                         name="number"
                         onChange={onChangeHandler}
+                        invalid={validation.number}
                     />
                 </FormGroup>
                 
@@ -159,6 +194,7 @@ const PersonForm = () => {
                         type="text"
                         name="issuedBy"
                         onChange={onChangeHandler}
+                        invalid={validation.issuedBy}
                     />
                 </FormGroup>
 
@@ -171,6 +207,7 @@ const PersonForm = () => {
                         type="date"
                         name="dateOfIssue"
                         onChange={onChangeHandler}
+                        invalid={validation.dateOfIssue}
                     />
                 </FormGroup>
                 
@@ -183,6 +220,7 @@ const PersonForm = () => {
                         type="text"
                         name="residencyInfo"
                         onChange={onChangeHandler}
+                        invalid={validation.residencyInfo}
                     />
                 </FormGroup>
 
@@ -195,6 +233,7 @@ const PersonForm = () => {
                         type="number"
                         name="age"
                         onChange={onChangeHandler}
+                        invalid={validation.age}
                     />
                 </FormGroup>
 
@@ -207,12 +246,13 @@ const PersonForm = () => {
                         type="select"
                         name="criminalRecordInfo"
                         onChange={onChangeHandler}
+                        invalid={validation.criminalRecordInfo}
                     >
-                        <option value="have">
-                            Было
-                        </option>
                         <option value="not have">
                             Не было
+                        </option>
+                        <option value="have">
+                            Было
                         </option>
                     </Input>
                 </FormGroup>
@@ -226,6 +266,7 @@ const PersonForm = () => {
                         type="number"
                         name="amount"
                         onChange={onChangeHandler}
+                        invalid={validation.amount}
                     />
                 </FormGroup>
                 
@@ -237,6 +278,7 @@ const PersonForm = () => {
                         type="select"
                         name="purpose"
                         onChange={onChangeHandler}
+                        invalid={validation.purpose}
                     >
                         <option value="consumer loan">
                             Потребительский кредит
@@ -258,6 +300,7 @@ const PersonForm = () => {
                         type="select"
                         name="bail"
                         onChange={onChangeHandler}
+                        invalid={validation.bail}
                     >
                         <option value="no bail">
                             Нет залога
@@ -284,6 +327,7 @@ const PersonForm = () => {
                         type="select"
                         name="availabilityOfOtherLoans"
                         onChange={onChangeHandler}
+                        invalid={validation.availabilityOfOtherLoans}
                     >
                         <option value="0">
                             Нет
@@ -302,6 +346,7 @@ const PersonForm = () => {
                         type="select"
                         name="employment"
                         onChange={onChangeHandler}
+                        invalid={validation.employment}
                     >
                         <option value="employed under an employment contract">
                             Трудоустроен по трудовому договору
@@ -323,6 +368,11 @@ const PersonForm = () => {
                 
                 <Button>Отправить</Button>
             </Form>
+            <
+                ResultForm
+                status={result.status}
+                procents={result.procents}
+            />
         </div>
     )
 }

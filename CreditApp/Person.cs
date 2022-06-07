@@ -15,7 +15,7 @@ public class Person
     public string Middlename { get; set; }
     
     [Required]
-    [StringLength(4, MinimumLength = 6)]
+    [StringLength(4, MinimumLength = 4)]
     public string Series { get; set; }
     [Required]
     [StringLength(6, MinimumLength = 6)]

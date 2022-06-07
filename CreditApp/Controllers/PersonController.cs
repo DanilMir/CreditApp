@@ -13,7 +13,18 @@ public class PersonController : Controller
     {
         var points = GetPoints(person);
 
-        return Ok(points);
+        if (points <= 80) return Ok(new {status = "not allowed"});
+        var procent = points switch
+        {
+            < 84 => 30,
+            >= 84 and < 88 => 26,
+            >= 88 and < 92 => 22,
+            >= 92 and < 96 => 19,
+            >= 96 and < 100 => 15,
+            >= 100 => 12.5
+        };
+
+        return Ok(new {status = "allowed", procents = procent});
     }
 
     private static int GetPoints(Person person)
@@ -50,7 +61,7 @@ public class PersonController : Controller
                 break;
         }
 
-        if (person.CriminalRecordInfo == "not")
+        if (person.CriminalRecordInfo == "not have")
         {
             points += 15;
         }

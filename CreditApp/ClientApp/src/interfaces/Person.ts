@@ -1,0 +1,18 @@
+﻿export default interface Person{
+    surname: string,
+    name: string,
+    middlename: string,
+    series: string,
+    number: string,
+    issuedBy: string,
+    dateOfIssue: Date,
+    residencyInfo: string,
+    age: number,
+    criminalRecordInfo: string,
+    amount: number,
+    purpose: string,
+    bail: string,
+    ageOfCar: number,
+    availabilityOfOtherLoans: number,
+    employment: string,
+}
