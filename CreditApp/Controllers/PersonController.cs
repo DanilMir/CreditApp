@@ -6,10 +6,10 @@ namespace CreditApp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AnketaController : Controller
+public class PersonController : Controller
 {
     [HttpPost]
-    public IActionResult Get([FromBody]Person person)
+    public IActionResult Post([FromBody]Person person)
     {
         var points = GetPoints(person);
 

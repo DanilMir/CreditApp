@@ -7,8 +7,8 @@ const PersonForm = () => {
         surname: string,
         name: string,
         middlename: string,
-        series: number,
-        number: number,
+        series: string,
+        number: string,
         issuedBy: string,
         dateOfIssue: Date,
         residencyInfo: string,
@@ -26,8 +26,8 @@ const PersonForm = () => {
         surname: "",
         name: "",
         middlename: "",
-        series: -1,
-        number: -1,
+        series: "",
+        number: "",
         issuedBy: "",
         dateOfIssue: new Date(),
         residencyInfo: "",
@@ -48,7 +48,7 @@ const PersonForm = () => {
         //if(data.isCorrect) then => 
         //else return <error text>
         
-        fetch('anketa',
+        fetch('person',
             {
                 method: 'POST',
                 headers: {
