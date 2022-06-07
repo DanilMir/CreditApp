@@ -18,6 +18,7 @@ public class Person
     public int Amount { get; set; }
     public string Purpose { get; set; }
     public string Bail { get; set; }
+    public int AgeOfCar { get; set; }
     public int AvailabilityOfOtherLoans { get; set; }
     public string Employment { get; set; }
     

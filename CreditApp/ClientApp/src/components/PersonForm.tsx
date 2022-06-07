@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 
 const PersonForm = () => {
@@ -17,6 +17,7 @@ const PersonForm = () => {
         amount: number,
         purpose: string,
         bail: string,
+        ageOfCar: number,
         availabilityOfOtherLoans: number,
         employment: string,
     }
@@ -35,9 +36,11 @@ const PersonForm = () => {
         amount: -1,
         purpose: "",
         bail: "",
+        ageOfCar: -1,
         availabilityOfOtherLoans: -1,
         employment: "",
     });
+    
     
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -64,6 +67,21 @@ const PersonForm = () => {
         console.log(person)
     };
     
+    function renderAutoChoose(){
+        return (
+            <FormGroup>
+                <Label for="ageOfCar">
+                    Возраст автомобиля
+                </Label>
+                <Input
+                    placeholder="Возраст автомобиля"
+                    type="number"
+                    name="ageOfCar"
+                    onChange={onChangeHandler}
+                />
+            </FormGroup>
+        )
+    }
     
     return (
         <div className="App">
@@ -260,6 +278,8 @@ const PersonForm = () => {
                     </Input>
                 </FormGroup>
 
+                { person.bail ===  'car' ? renderAutoChoose() : ""}
+                
                 <FormGroup>
                     <Label for="availabilityOfOtherLoans">
                         Наличие других кредитов

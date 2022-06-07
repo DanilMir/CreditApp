@@ -11,12 +11,15 @@ public class AnketaController : Controller
     [HttpPost]
     public IActionResult Get([FromBody]Person person)
     {
-        // string jsonString = JsonSerializer.Serialize(person);
-        // Console.WriteLine(jsonString);
-        // return Ok("Its good day, to be not ded");
+        var points = GetPoints(person);
 
+        return Ok(points);
+    }
+
+    private static int GetPoints(Person person)
+    {
         var points = 0;
-        
+
         switch (person.Age)
         {
             case >= 21 and <= 28:
@@ -31,7 +34,8 @@ public class AnketaController : Controller
                     default:
                         break;
                 }
-                break; 
+
+                break;
 
             case >= 29 and <= 59:
                 points += 14;
@@ -42,6 +46,7 @@ public class AnketaController : Controller
                 {
                     points += 8;
                 }
+
                 break;
         }
 
@@ -80,21 +85,28 @@ public class AnketaController : Controller
                 points += 12;
                 break;
         }
-        
+
         switch (person.Bail)
         {
             case "property":
                 points += 14;
                 break;
             case "car":
-                //TODO
-                //
+                if (person.AgeOfCar < 3)
+                {
+                    points += 8;
+                }
+                else
+                {
+                    points += 3;
+                }
+
                 break;
             case "surety":
                 points += 12;
                 break;
         }
-        
+
         switch (person.AvailabilityOfOtherLoans)
         {
             case 0:
@@ -116,7 +128,7 @@ public class AnketaController : Controller
                 points += 8;
                 break;
         }
-        
-        return Ok(points);
+
+        return points;
     }
 }
