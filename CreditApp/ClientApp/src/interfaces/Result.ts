@@ -1,4 +1,5 @@
-﻿export default interface Result{
+export default interface Result{
     status: string,
-    procents: number
+    procents: number,
+    errors: string[]
 }

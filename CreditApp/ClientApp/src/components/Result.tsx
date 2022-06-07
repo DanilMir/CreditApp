@@ -1,13 +1,9 @@
-﻿import React, {useState} from 'react';
-import {Alert, Button, Form, FormFeedback, FormGroup, Input, Label} from "reactstrap";
+﻿import React from 'react';
+import {Alert, ListGroup, ListGroupItem} from "reactstrap";
 
-const ResultForm = (props: {status: string, procents: number}) => {
+const ResultForm = (props: {status: string, procents: number, errors: string[]}) => {
     
-    if(props.status == "none"){
-        return null
-    }
-    
-    if(props.status == "allowed")
+    if(props.status === "allowed")
     {
         return (
             <div>
@@ -16,7 +12,7 @@ const ResultForm = (props: {status: string, procents: number}) => {
                         Поздравлеям
                     </h4>
                     <p>
-                        Вам был разрешен кредит
+                        Вам был одобрен кредит
                     </p>
                     <hr />
                     <p className="mb-0">
@@ -27,7 +23,7 @@ const ResultForm = (props: {status: string, procents: number}) => {
         )
     }
     
-    if(props.status == "not allowed"){
+    if(props.status === "not allowed"){
         return (
             <div>
                 <Alert color="danger">
@@ -42,10 +38,26 @@ const ResultForm = (props: {status: string, procents: number}) => {
         )
     }
     
+    if(props.status === "errors") {
+        return (
+                <Alert color="danger">
+                    <ListGroup>
+                        {
+                            props.errors.map((item, key) => {
+                                return (
+                                    <ListGroupItem key={key}>
+                                        {item}
+                                    </ListGroupItem>
+                                )
+                            })
+                        }
+                    </ListGroup>
+                </Alert>
+        )
+    }
+    
     return (
         <>
-            <p>{props.status}</p>
-            <p>{props.procents}</p>
         </>
     )
 }

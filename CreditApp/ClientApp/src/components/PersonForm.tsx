@@ -4,6 +4,7 @@ import ResultForm from "./Result";
 import Person from "../interfaces/Person";
 import Validation from "../interfaces/Validation";
 import Result from "../interfaces/Result";
+import Validator from "../services/Validator";
 
 const PersonForm = () => {
     
@@ -47,15 +48,22 @@ const PersonForm = () => {
     
     const [result, updateResult] = useState<Result>({
         status: "none",
-        procents: 0
+        procents: 0,
+        errors: []
     });
     
     
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         
-        if(!isDataCorrect()){
-            return;
+        const errors = Validator(person);
+        
+        if(errors.length > 0){
+            updateResult({
+                status: "errors",
+                procents: 0,
+                errors: errors
+            })
         }
         else{
             fetch('person',
@@ -372,6 +380,7 @@ const PersonForm = () => {
                 ResultForm
                 status={result.status}
                 procents={result.procents}
+                errors={result.errors}
             />
         </div>
     )
