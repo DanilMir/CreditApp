@@ -4,13 +4,39 @@ import {Button, Col, Form, FormGroup, FormText, Input, Label, Row} from "reactst
 const PersonForm = () => {
     
     interface Person{
-        Name: string,
-        Age: number
+        surname: string,
+        name: string,
+        middlename: string,
+        series: number,
+        number: number,
+        issuedBy: string,
+        dateOfIssue: Date,
+        residencyInfo: string,
+        age: number,
+        criminalRecordInfo: string,
+        amount: number,
+        purpose: string,
+        bail: string,
+        availabilityOfOtherLoans: number,
+        employment: string,
     }
     
     const [person, updatePerson] = useState<Person>({
-        Name: 'Danil',
-        Age: 19
+        surname: "",
+        name: "",
+        middlename: "",
+        series: -1,
+        number: -1,
+        issuedBy: "",
+        dateOfIssue: new Date(),
+        residencyInfo: "",
+        age: -1,
+        criminalRecordInfo: "",
+        amount: -1,
+        purpose: "",
+        bail: "",
+        availabilityOfOtherLoans: -1,
+        employment: "",
     });
     
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -31,7 +57,12 @@ const PersonForm = () => {
             .then(res => res.text())
             .then(info => console.log(info));
     }
-    
+
+    const onChangeHandler = (e : React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        updatePerson((prevState) => ({ ...prevState, [name]: value }));
+        console.log(person)
+    };
     
     
     return (
@@ -46,10 +77,10 @@ const PersonForm = () => {
                         Surname
                     </Label>
                     <Input
-                        id="Surname"
-                        name="Surname"
                         placeholder="Surname"
+                        name="surname"
                         type="text"
+                        onChange={onChangeHandler}
                     />
                 </FormGroup>
 
@@ -58,10 +89,10 @@ const PersonForm = () => {
                         Name
                     </Label>
                     <Input
-                        id="Name"
-                        name="Name"
+                        name="name"
                         placeholder="Name"
                         type="text"
+                        onChange={onChangeHandler}
                     />
                 </FormGroup>
 
@@ -70,10 +101,10 @@ const PersonForm = () => {
                         Middlename
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Middlename"
+                        name="middlename"
                         type="text"
+                        onChange={onChangeHandler}
                     />
                 </FormGroup>
 
@@ -83,8 +114,6 @@ const PersonForm = () => {
                         Cерия
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Cерия"
                         type="number"
                     />
@@ -96,8 +125,6 @@ const PersonForm = () => {
                         Номер
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Номер"
                         type="number"
                     />
@@ -109,8 +136,6 @@ const PersonForm = () => {
                         Кем выдан
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Кем выдан"
                         type="text"
                     />
@@ -121,8 +146,6 @@ const PersonForm = () => {
                         Дата выдачи
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Дата выдачи"
                         type="date"
                     />
@@ -133,8 +156,6 @@ const PersonForm = () => {
                         Информация о прописке
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Информация о прописке"
                         type="text"
                     />
@@ -145,8 +166,6 @@ const PersonForm = () => {
                         Возраст
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Возраст"
                         type="number"
                     />
@@ -157,15 +176,13 @@ const PersonForm = () => {
                         Сведения о судимости
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Сведения о судимости"
                         type="select">
                         <option>
-                            была
+                            Было
                         </option>
                         <option>
-                            не было
+                            Не было
                         </option>
                     </Input>
                 </FormGroup>
@@ -175,8 +192,6 @@ const PersonForm = () => {
                         Сумма кредита
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         placeholder="Сумма кредита"
                         type="number"
                     />
@@ -188,8 +203,6 @@ const PersonForm = () => {
                         Цель
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         type="select">
                         <option>
                             Потребительский кредит
@@ -208,8 +221,6 @@ const PersonForm = () => {
                         Залог
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         type="select">
                         <option>
                             Недвижимость
@@ -228,8 +239,6 @@ const PersonForm = () => {
                         Наличие других кредитов
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         type="select">
                         <option>
                             Нет
@@ -245,8 +254,6 @@ const PersonForm = () => {
                         Трудоустройство
                     </Label>
                     <Input
-                        id="Middlename"
-                        name="Middlename"
                         type="select">
                         <option>
                             Трудоустроен по трудовому договору
@@ -264,17 +271,6 @@ const PersonForm = () => {
                             Безработный
                         </option>
                     </Input>
-                </FormGroup>
-
-                <FormGroup>
-                    <Label for="exampleText">
-                        Информация о залоге
-                    </Label>
-                    <Input
-                        id="exampleText"
-                        name="text"
-                        type="textarea"
-                    />
                 </FormGroup>
                 
                 <Button>Submit</Button>

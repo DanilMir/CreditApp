@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CreditApp.Controllers;
 
@@ -8,11 +9,11 @@ namespace CreditApp.Controllers;
 public class AnketaController : Controller
 {
     [HttpPost]
-    public IActionResult Get([FromBody]Anket anket)
+    public IActionResult Get([FromBody]Person person)
     {
-        Console.WriteLine(anket.Name);
-        Console.WriteLine(anket.Age);
-
-        return Ok("Its good day, to be not ded");
+        string jsonString = JsonSerializer.Serialize(person);
+        Console.WriteLine(jsonString);
+        // return Ok("Its good day, to be not ded");
+        return Ok(jsonString);
     }
 }
