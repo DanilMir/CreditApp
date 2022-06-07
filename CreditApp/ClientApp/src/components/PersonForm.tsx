@@ -181,6 +181,101 @@ const PersonForm = () => {
                         type="number"
                     />
                 </FormGroup>
+
+
+                <FormGroup>
+                    <Label for="Middlename">
+                        Цель
+                    </Label>
+                    <Input
+                        id="Middlename"
+                        name="Middlename"
+                        type="select">
+                        <option>
+                            Потребительский кредит
+                        </option>
+                        <option>
+                            Недвижимость
+                        </option>
+                        <option>
+                            Перекредитование
+                        </option>
+                    </Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label for="Middlename">
+                        Залог
+                    </Label>
+                    <Input
+                        id="Middlename"
+                        name="Middlename"
+                        type="select">
+                        <option>
+                            Недвижимость
+                        </option>
+                        <option>
+                            Автомобиль
+                        </option>
+                        <option>
+                            Поручительство
+                        </option>
+                    </Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label for="Middlename">
+                        Наличие других кредитов
+                    </Label>
+                    <Input
+                        id="Middlename"
+                        name="Middlename"
+                        type="select">
+                        <option>
+                            Нет
+                        </option>
+                        <option>
+                            Есть
+                        </option>
+                    </Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label for="Middlename">
+                        Трудоустройство
+                    </Label>
+                    <Input
+                        id="Middlename"
+                        name="Middlename"
+                        type="select">
+                        <option>
+                            Трудоустроен по трудовому договору
+                        </option>
+                        <option>
+                            Собственное ИП
+                        </option>
+                        <option>
+                            Фрилансер
+                        </option>
+                        <option>
+                            Пенсионер
+                        </option>
+                        <option>
+                            Безработный
+                        </option>
+                    </Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label for="exampleText">
+                        Информация о залоге
+                    </Label>
+                    <Input
+                        id="exampleText"
+                        name="text"
+                        type="textarea"
+                    />
+                </FormGroup>
                 
                 <Button>Submit</Button>
             </Form>
