@@ -119,7 +119,7 @@ const PersonForm = () => {
     
     return (
         <div className="App">
-            <h2>Person form</h2>
+            <h2>Анкета</h2>
             <Form 
                 className="form"
                 onSubmit={onSubmit}>

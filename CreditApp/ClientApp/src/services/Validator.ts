@@ -40,6 +40,24 @@ const Validator = (person: Person) : string[] => {
         errors.push("Сумма кредита отсуствует");
     }
     
+    if(person.series.length > 0 && Array.from(person.series)[0] === '-'){
+        errors.push("Серия паспорта должна быть больше нуля");
+    }
+
+    if(person.number.length > 0 && Array.from(person.series)[0] === '-'){
+        errors.push("Номер паспорта должен быть больше нуля");
+    }
+    
+    if(person.age < -1)
+    {
+        errors.push("Укажите корректный возраст");
+    }
+
+    if(person.amount < -1)
+    {
+        errors.push("Укажите корректную сумму кредита");
+    }
+    
     return errors;
 }
 

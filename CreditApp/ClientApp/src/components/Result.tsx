@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Alert, ListGroup, ListGroupItem} from "reactstrap";
 
 const ResultForm = (props: {status: string, procents: number, errors: string[]}) => {
@@ -39,7 +39,6 @@ const ResultForm = (props: {status: string, procents: number, errors: string[]})
     }
     
     if(props.status === "errors") {
-        console.log("ошибка")
         return (
                 <Alert color="danger">
                     <ListGroup>
