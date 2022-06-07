@@ -19,9 +19,9 @@ public class PersonController : Controller
     }
     
     [HttpPost]
-    public IActionResult Post([FromBody]Person person)
+    public async Task<IActionResult> Post([FromBody]Person person)
     {
-        var isCriminal = _criminal.IsCriminal(person);
+        var isCriminal = await  _criminal.IsCriminal(person);
         if (isCriminal && person.CriminalRecordInfo == "not have" ||
             !isCriminal && person.CriminalRecordInfo == "have")
         {
