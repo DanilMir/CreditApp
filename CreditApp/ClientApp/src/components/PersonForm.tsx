@@ -92,10 +92,10 @@ const PersonForm = () => {
 
                 <FormGroup>
                     <Label for="Surname">
-                        Surname
+                        Фамилия
                     </Label>
                     <Input
-                        placeholder="Surname"
+                        placeholder="Фамилия"
                         name="surname"
                         type="text"
                         onChange={onChangeHandler}
@@ -104,11 +104,11 @@ const PersonForm = () => {
 
                 <FormGroup>
                     <Label for="Name">
-                        Name
+                        Имя
                     </Label>
                     <Input
                         name="name"
-                        placeholder="Name"
+                        placeholder="Имя"
                         type="text"
                         onChange={onChangeHandler}
                     />
@@ -116,17 +116,16 @@ const PersonForm = () => {
 
                 <FormGroup>
                     <Label for="Middlename">
-                        Middlename
+                        Отчество
                     </Label>
                     <Input
-                        placeholder="Middlename"
+                        placeholder="Отчество"
                         name="middlename"
                         type="text"
                         onChange={onChangeHandler}
                     />
                 </FormGroup>
-
-
+                
                 <FormGroup>
                     <Label for="Series">
                         Cерия
@@ -138,8 +137,7 @@ const PersonForm = () => {
                         onChange={onChangeHandler}
                     />
                 </FormGroup>
-
-
+                
                 <FormGroup>
                     <Label for="Number">
                         Номер
@@ -151,8 +149,7 @@ const PersonForm = () => {
                         onChange={onChangeHandler}
                     />
                 </FormGroup>
-
-
+                
                 <FormGroup>
                     <Label for="Issued By">
                         Кем выдан
@@ -231,8 +228,7 @@ const PersonForm = () => {
                         onChange={onChangeHandler}
                     />
                 </FormGroup>
-
-
+                
                 <FormGroup>
                     <Label for="purpose">
                         Цель
@@ -325,7 +321,7 @@ const PersonForm = () => {
                     </Input>
                 </FormGroup>
                 
-                <Button>Submit</Button>
+                <Button>Отправить</Button>
             </Form>
         </div>
     )
